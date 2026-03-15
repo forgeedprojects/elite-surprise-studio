@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS Creative Studio</title>
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+      <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =====================================
+   NAVBAR BACKGROUND
+===================================== */
+.navbar {
+    width: 100%;
+    background: #5B2C83;
+    box-shadow: 0 8px 25px rgba(91, 44, 131, 0.35);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    padding: 14px 20px;
+}
+
+/* =====================================
+   NAVBAR CONTAINER (REDUCED WIDTH)
+===================================== */
+.navbar-container {
+    max-width: 1150px;   /* 👈 reduced width */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* =====================================
+   LEFT SIDE (LOGO + BRAND)
+===================================== */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 44px;
+    height: auto;
+}
+
+.brand-name {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: #ffffff;
+}
+
+/* =====================================
+   RIGHT SIDE MENU
+===================================== */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #ffffff;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav-right a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-right a:hover::after {
+    width: 100%;
+}
+
+/* =====================================
+   MOBILE MENU ICON
+===================================== */
+.menu-icon {
+    display: none;
+    font-size: 28px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* =====================================
+   RESPONSIVE - TABLET
+===================================== */
+@media (max-width: 900px) {
+    .navbar-container {
+        max-width: 100%;
+    }
+
+    .brand-name {
+        font-size: 20px;
+    }
+
+    .nav-right {
+        gap: 22px;
+    }
+}
+
+/* =====================================
+   RESPONSIVE - MOBILE
+===================================== */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-right {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #5B2C83;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 0;
+        display: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-right.active {
+        display: flex;
+    }
+
+    .nav-right a {
+        font-size: 18px;
+    }
+}
+
+/* =====================================
+   EXTRA SMALL DEVICES
+===================================== */
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .logo {
+        width: 40px;
+    }
+}
+
+/* ===============================
+   ACTIONS (CART / WISHLIST BUTTONS)
+=================================*/
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 20px; /* spacing from top and sides */
+}
+
+.actions button {
+  background: white;
+  color: #7B3FE4; /* lavender color */
+  border: 2px solid #7B3FE4;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.actions button:hover {
+  background: #7B3FE4;
+  color: white;
+}
+
+.actions .material-icons {
+  font-size: 18px;
+}
+
+
+
+/* ===============================
+   PRODUCTS / SERVICES GRID
+=================================*/
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+@media(min-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media(min-width: 600px) and (max-width: 1023px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 599px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   PRODUCT CARD
+=================================*/
+.product {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  text-align: center;
+  padding: 10px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.product:hover {
+  transform: scale(1.03);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+  height: 140px;
+  object-fit: cover;
+}
+
+.product button {
+  background: #7B3FE4;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ===============================
+   WISHLIST ICON
+=================================*/
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7B3FE4; /* lavender color */
+  box-shadow: 0 0 12px rgba(123,63,228,0.6);
+  animation: floatIcon 2s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+.wishlist-icon.active {
+  color: #fff700; /* optional: golden when active */
+  background: #7B3FE4;
+  box-shadow: 0 0 12px rgba(123,63,228,0.8);
+}
+
+@keyframes floatIcon {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-5px); }
+}
+
+/* ===============================
+   SPARKLES
+=================================*/
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: gold;
+  border-radius: 50%;
+  animation: sparkleAnim 3s linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+@keyframes sparkleAnim {
+  0% { transform: translateY(0) rotate(0deg); opacity:0.8; }
+  50% { transform: translateY(-10px) rotate(180deg); opacity:0.4; }
+  100% { transform: translateY(0) rotate(360deg); opacity:0.8; }
+}
+
+/* ===============================
+   CART PANEL
+=================================*/
+.cart-panel {
+  position: fixed;
+  top: 60px; /* adjust for navbar height */
+  left: -100%;
+  width: 90%;
+  max-width: 350px;
+  height: calc(100% - 60px); /* adjust height for navbar */
+  background: white;
+  box-shadow: 3px 0 8px rgba(0,0,0,0.3);
+  transition: left 0.4s ease;
+  padding: 15px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.cart-panel.open {
+  left: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cart-header h2 {
+  color: #7B3FE4;
+  margin: 0;
+  font-size: 18px;
+}
+
+.cart-header .close-btn {
+  cursor: pointer;
+  font-size: 28px;
+  color: #333;
+}
+
+/* ===============================
+   TAB BUTTONS
+=================================*/
+.tab-buttons {
+  display: flex;
+  margin-top: 10px;
+  border-bottom: 2px solid #eee;
+  flex-wrap: wrap;
+}
+
+.tab-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #f5f5f5;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.tab-buttons button.active {
+  background: #7B3FE4;
+  color: white;
+}
+
+/* ===============================
+   LIST CONTAINER
+=================================*/
+.list-container {
+  margin-top: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background: #f5f5f5;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-wrap: break-word;
+  gap: 5px;
+}
+
+li button {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+li .add-cart-btn {
+  background: #7B3FE4;
+}
+
+/* ===============================
+   WHATSAPP BUTTON
+=================================*/
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ===============================
+   HIGHLIGHT SEARCH
+=================================*/
+.product.highlight {
+  animation: highlightAnim 1s ease-in-out 3;
+  border: 2px solid #ff416c;
+  box-shadow: 0 0 15px rgba(255,65,108,0.7);
+}
+
+@keyframes highlightAnim {
+  0% { transform: scale(1); background-color: #fff7f7; }
+  50% { transform: scale(1.05); background-color: #fff0f0; }
+  100% { transform: scale(1); background-color: #fff7f7; }
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+=================================*/
+@media(max-width: 480px) {
+  .product img {
+    height: 120px;
+  }
+
+  .wishlist-icon {
+    font-size: 24px;
+    padding: 5px;
+  }
+}
+
+
+
+/* =====================================
+   FOOTER
+===================================== */
+.site-footer {
+    background: linear-gradient(135deg, #5B2C83, #7B3FE4);
+    color: #ffffff;
+    padding: 70px 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container */
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 50px;
+}
+
+/* Brand */
+.footer-brand h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Links */
+.footer-links h4,
+.footer-contact h4 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Contact */
+.footer-contact p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+/* Social */
+.footer-social {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #ffffff;
+    color: #5B2C83;
+    transform: translateY(-4px);
+}
+
+/* Bottom */
+.footer-bottom {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+  </style>
+</head>
+<body>
+
+        <!-- Navbar Start -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="nav-left">
+            <img src="images/logo.png" alt="" class="logo">
+            <span class="brand-name">SMS Creative Studio</span>
+        </div>
+
+        <div class="nav-right" id="navMenu">
+            <a href="index.html">Home</a>
+             <a href="about.html">About us</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+           <a href="contactus.html">Contact Us</a>
+        </div>
+
+        <div class="menu-icon" id="menuIcon">☰</div>
+    </div>
+</nav>
+
+    <!-- Navbar End -->
+
+<header>
+  
+  <div class="actions">
+    <button onclick="toggleCart('cart')">
+      <span class="material-icons">shopping_cart</span>Cart (<span id="cartCount">0</span>)
+    </button>
+    <button onclick="toggleCart('wishlist')">
+      <span class="material-icons">favorite</span>Wishlist (<span id="wishlistCount">0</span>)
+    </button>
+  </div>
+</header>
+
+<div class="products" id="productList"></div>
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2 id="panelTitle">Your Cart</h2>
+    <span class="material-icons close-btn" onclick="closePanel()">close</span>
+  </div>
+
+  <div class="tab-buttons">
+    <button id="cartTab" class="active" onclick="showTab('cart')">Cart</button>
+    <button id="wishlistTab" onclick="showTab('wishlist')">Wishlist</button>
+  </div>
+
+  <div class="list-container">
+    <ul id="cartItems"></ul>
+    <ul id="wishlistItems" style="display:none;"></ul>
+  </div>
+
+  <button class="whatsapp-btn" id="orderBtn" onclick="sendToWhatsApp()">📦 Book Service on WhatsApp</button>
+</div>
+
+
+
+<!-- FOOTER START -->
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+            <h3>SMS Creative Studio</h3>
+            <p>
+                Creating unforgettable surprise moments with luxury décor,
+                creativity, and emotion — across India.
+            </p>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About Us</a>
+           <a href="contactus.html">Contact Us</a>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="footer-links">
+            <h4>Our Services</h4>
+            <a href="services.html">Birthday Surprises</a>
+            <a href="services.html">Proposal Setup</a>
+            <a href="services.html">Anniversary Decor</a>
+            <a href="services.html">Candle Light Dinner</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>📍 Available Across India</p>
+            <p>📞 +91 90438 32417</p>
+            <p>✉️ Mailsudarmanisenthil1234@gmail.com</p>
+
+<div class="footer-social">
+    <a href="https://www.instagram.com/sms_creative_studio?utm_source=qr&igsh=MWMwOXNzdXdjbmJkdg==" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1AYMNYdGzT/" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <!-- If you want Twitter later, add your Twitter link here -->
+    <a href="#" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+</div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        <p>© 2026 SMS Creative Studio. All Rights Reserved.</p>
+    </div>
+
+</footer>
+<!-- FOOTER END -->
+
+<script>
+const products = [
+  { name: "Birthday Surprise", img: "./Service page/Birthday.webp" },
+  { name: "Proposal Setup", img: "./Service page/propasl.jpg" },
+  { name: "Anniversary Decor", img: "./Service page/Anniversary Decor.jpg" },
+  { name: "Candle Light Dinner", img: "./Service page/Candle Light Dinner.jpeg" },
+  { name: "Corporate Events", img: "./Service page/Corporate Events.jpg" },
+  { name: "Baby Shower", img: "./Service page/Baby Shower.webp" }
+];
+
+let cart = [];
+let wishlist = [];
+let activeTab = "cart";
+
+// Load Services
+function loadProducts() {
+  const container = document.getElementById("productList");
+  products.forEach((p, i) => {
+    container.innerHTML += `
+      <div class="product">
+        <span class="material-icons wishlist-icon" id="wish${i}" onclick="toggleWishlist(${i})">favorite</span>
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <button onclick="addToCart(${i})">Book Service</button>
+      </div>
+    `;
+
+    const productDiv = container.children[i];
+    for(let j=0; j<3; j++){
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.top = Math.random() * 120 + 'px';
+      sparkle.style.left = Math.random() * 160 + 'px';
+      productDiv.appendChild(sparkle);
+    }
+  });
+}
+
+// Cart Functions
+function addToCart(i) {
+  const product = products[i];
+  const index = cart.findIndex(item => item.name === product.name);
+  if (index === -1) {
+    cart.push({ name: product.name, qty: 1 });
+  }
+  updateCart();
+}
+
+function updateCart() {
+  const list = document.getElementById("cartItems");
+  list.innerHTML = "";
+  cart.forEach((item, index) => {
+    list.innerHTML += `<li>${item.name}
+      <button onclick="removeFromCart(${index})">Remove</button>
+    </li>`;
+  });
+  document.getElementById("cartCount").innerText = cart.length;
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+// Wishlist Functions
+function toggleWishlist(i) {
+  const icon = document.getElementById("wish" + i);
+  const product = products[i];
+  const index = wishlist.findIndex(p => p.name === product.name);
+  if (index === -1) {
+    wishlist.push(product);
+    icon.classList.add("active");
+  } else {
+    wishlist.splice(index, 1);
+    icon.classList.remove("active");
+  }
+  updateWishlist();
+}
+
+function updateWishlist() {
+  const list = document.getElementById("wishlistItems");
+  list.innerHTML = "";
+  wishlist.forEach((item, index) => {
+    list.innerHTML += `<li>${item.name} 
+      <button class="add-cart-btn" onclick="wishlistAddToCart(${index})">Book Service</button>
+      <button onclick="removeFromWishlist(${index})">Remove</button>
+    </li>`;
+  });
+  document.getElementById("wishlistCount").innerText = wishlist.length;
+}
+
+function removeFromWishlist(index) {
+  wishlist.splice(index, 1);
+  updateWishlist();
+}
+
+function wishlistAddToCart(index) {
+  const product = wishlist[index];
+  const cartIndex = cart.findIndex(i => i.name === product.name);
+  if(cartIndex === -1){
+    cart.push({ name: product.name, qty: 1 });
+  }
+  updateCart();
+  showTab('cart');
+}
+
+// Cart Panel
+function toggleCart(tab) {
+  document.getElementById("cartPanel").classList.add("open");
+  showTab(tab);
+}
+
+function showTab(tab) {
+  activeTab = tab;
+  document.getElementById("cartItems").style.display = tab === "cart" ? "block" : "none";
+  document.getElementById("wishlistItems").style.display = tab === "wishlist" ? "block" : "none";
+  document.getElementById("orderBtn").style.display = tab === "cart" ? "block" : "none";
+  document.getElementById("cartTab").classList.toggle("active", tab === "cart");
+  document.getElementById("wishlistTab").classList.toggle("active", tab === "wishlist");
+  document.getElementById("panelTitle").innerText = tab === "cart" ? "Your Bookings" : "Your Wishlist";
+}
+
+function closePanel() {
+  document.getElementById("cartPanel").classList.remove("open");
+}
+
+// WhatsApp Booking
+function sendToWhatsApp() {
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  const message = encodeURIComponent("Hello, I want to book the following services:\n" +
+    cart.map((i, n) => `${n+1}. ${i.name}`).join("\n"));
+  const phoneNumber = "9043832417"; 
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+}
+
+// Highlight searched service
+function highlightSearchProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const searchQuery = params.get("search")?.toLowerCase();
+  if(!searchQuery) return;
+
+  const productDivs = document.querySelectorAll(".product");
+  let found = false;
+
+  productDivs.forEach((div, index) => {
+    const name = products[index].name.toLowerCase();
+    if(name.includes(searchQuery)) {
+      found = true;
+      div.classList.add("highlight");
+      div.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+
+  if(!found){
+    console.log("No matching service found");
+  }
+}
+
+// Initialize
+loadProducts();
+highlightSearchProduct();
+</script>
+
+</body>
+</html>

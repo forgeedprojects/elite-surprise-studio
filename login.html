@@ -1,0 +1,226 @@
+
+<style>
+
+
+body{
+background:#f4f4f4;
+height:200vh;
+}
+
+/* WEBSITE CONTENT */
+
+.website{
+text-align:center;
+padding:120px;
+font-size:25px;
+}
+
+/* POPUP BACKGROUND */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+/* LOGIN BOX */
+
+.box{
+width:350px;
+background:white;
+padding:30px;
+border-radius:10px;
+position:relative;
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:10px;
+border:none;
+background:#007bff;
+color:white;
+font-size:16px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.switch{
+text-align:center;
+margin-top:10px;
+color:#007bff;
+cursor:pointer;
+}
+
+.close{
+position:absolute;
+right:15px;
+top:10px;
+font-size:20px;
+cursor:pointer;
+}
+
+.form{
+display:none;
+}
+
+.form.active{
+display:block;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.box{
+width:90%;
+}
+
+}
+
+</style>
+
+
+<div class="website">
+<h1>Welcome to My Website</h1>
+<p>Website content goes here...</p>
+</div>
+
+<!-- POPUP LOGIN -->
+
+<div class="popup" id="popup">
+
+<div class="box">
+
+<span class="close" onclick="closePopup()">×</span>
+
+
+<!-- LOGIN FORM -->
+
+<form class="form active" id="loginForm"
+action="https://api.web3forms.com/submit"
+method="POST">
+
+<h2>Login</h2>
+
+<input type="hidden" name="access_key"
+value="ab682a31-21e5-4a00-915c-2ab8cd7e3fca">
+
+<input type="hidden" name="subject"
+value="Login Submission">
+
+<input type="checkbox" name="botcheck" style="display:none">
+
+<input type="email"
+name="email"
+placeholder="Email"
+required>
+
+<textarea
+name="message"
+placeholder="Password"
+required></textarea>
+
+<button type="submit">Login</button>
+
+<p class="switch" onclick="showSignup()">Create Account</p>
+
+</form>
+
+
+
+<!-- SIGNUP FORM -->
+
+<form class="form" id="signupForm"
+action="https://api.web3forms.com/submit"
+method="POST">
+
+<h2>Sign Up</h2>
+
+<input type="hidden" name="access_key"
+value="ab682a31-21e5-4a00-915c-2ab8cd7e3fca">
+
+<input type="hidden" name="subject"
+value="Signup Submission">
+
+<input type="checkbox" name="botcheck" style="display:none">
+
+<input type="text"
+name="name"
+placeholder="Full Name"
+required>
+
+<input type="email"
+name="email"
+placeholder="Email"
+required>
+
+<textarea
+name="message"
+placeholder="Password"
+required></textarea>
+
+<button type="submit">Sign Up</button>
+
+<p class="switch" onclick="showLogin()">Already have account?</p>
+
+</form>
+
+</div>
+</div>
+
+
+
+<script>
+
+/* SHOW SIGNUP */
+
+function showSignup(){
+
+document.getElementById("loginForm").classList.remove("active");
+document.getElementById("signupForm").classList.add("active");
+
+}
+
+/* SHOW LOGIN */
+
+function showLogin(){
+
+document.getElementById("signupForm").classList.remove("active");
+document.getElementById("loginForm").classList.add("active");
+
+}
+
+/* CLOSE POPUP */
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+</script>
+

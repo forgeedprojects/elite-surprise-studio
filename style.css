@@ -1,0 +1,962 @@
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f7f5fb;
+}
+/* =====================================
+   NAVBAR BACKGROUND
+===================================== */
+
+.navbar {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0px 0px;   /* pushed more to left */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* =========================
+   LEFT SECTION (LOGO + BRAND)
+========================= */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 85px;     /* increased logo size */
+    height: auto;
+}
+
+.brand-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    white-space: nowrap;
+}
+
+/* =========================
+   RIGHT MENU
+========================= */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-right a:hover {
+    color: #e63946;
+}
+
+/* =========================
+   HAMBURGER ICON
+========================= */
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar-container {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        width: 55px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-right {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 25px 0;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-right.active {
+        display: flex;
+    }
+
+    .nav-right a {
+        font-size: 17px;
+    }
+}
+
+
+
+/* =====================================
+   HERO SLIDER
+===================================== */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+
+/* Slides */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(91, 44, 131, 0.55),
+        rgba(123, 63, 228, 0.55)
+    );
+}
+
+/* Center Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+/* Button */
+.hero-btn {
+    text-decoration: none;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #ffffff, #f2e9ff);
+    color: #5B2C83;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 15px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+}
+
+.arrow.prev {
+    left: 20px;
+}
+
+.arrow.next {
+    right: 20px;
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+}
+
+
+
+/* =====================================
+   OCCASIONS SECTION
+===================================== */
+.occasions-section {
+    padding: 80px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #5B2C83;
+    margin-bottom: 50px;
+}
+
+/* Grid */
+.occasions-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Card */
+.occasion-card {
+    background: #CDB4DB;
+    border-radius: 30px;
+    padding: 25px;
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+
+.occasion-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Text */
+.occasion-card p {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #3a3a3a;
+}
+
+/* Hover */
+.occasion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(91, 44, 131, 0.25);
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 992px) {
+    .occasions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 28px;
+    }
+
+    .occasions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .occasion-card img {
+        height: 200px;
+    }
+}
+
+
+
+
+/* =====================================
+   ABOUT SECTION
+===================================== */
+.about-section {
+    padding: clamp(60px, 8vw, 120px) 20px;
+    background: linear-gradient(135deg, #f7f3ff, #ffffff);
+}
+
+/* Container */
+.about-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(30px, 6vw, 80px);
+    align-items: center;
+}
+
+/* =====================================
+   3D IMAGE WRAPPER
+===================================== */
+.about-3d-wrapper {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-3d-card {
+    width: clamp(260px, 30vw, 380px);
+    height: clamp(340px, 40vw, 480px);
+    border-radius: 30px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    box-shadow: 0 40px 80px rgba(91, 44, 131, 0.35);
+    background: #000;
+}
+
+.about-3d-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(40px);
+}
+
+/* =====================================
+   CONTENT
+===================================== */
+.about-content h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    color: #5B2C83;
+    margin-bottom: 18px;
+}
+
+.about-content p {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: #333;
+}
+
+/* Button */
+.about-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #5B2C83, #7B3FE4);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.about-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(123, 63, 228, 0.4);
+}
+
+/* =====================================
+   TABLET (<= 900px)
+===================================== */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-content {
+        order: 2;
+    }
+
+    .about-3d-wrapper {
+        order: 1;
+    }
+}
+
+/* =====================================
+   MOBILE (<= 600px)
+===================================== */
+@media (max-width: 600px) {
+    .about-section {
+        padding: 60px 15px;
+    }
+
+    .about-content p {
+        line-height: 1.65;
+    }
+
+    .about-btn {
+        padding: 13px 32px;
+        font-size: 15px;
+    }
+}
+
+/* =====================================
+   SMALL MOBILE (<= 400px)
+===================================== */
+@media (max-width: 400px) {
+    .about-3d-card {
+        width: 240px;
+        height: 320px;
+    }
+
+    .about-content h2 {
+        font-size: 24px;
+    }
+}
+
+
+
+/* =====================================
+   PARTY SURPRISES IN INDIA
+===================================== */
+.party-india {
+    padding: clamp(60px, 8vw, 120px) 20px;
+    background: linear-gradient(135deg, #5B2C83, #7B3FE4, #CDB4DB);
+}
+
+/* Container */
+.party-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(30px, 6vw, 70px);
+    align-items: center;
+}
+
+/* =====================================
+   CONTENT BOX
+===================================== */
+.party-content {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(14px);
+    padding: clamp(30px, 5vw, 50px);
+    border-radius: 24px;
+    color: #ffffff;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.party-content h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.party-content p {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.7;
+    margin-bottom: 22px;
+    opacity: 0.95;
+}
+
+.party-content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.party-content ul li {
+    font-size: clamp(14px, 1.6vw, 16px);
+    margin-bottom: 12px;
+}
+
+/* =====================================
+   BUTTON
+===================================== */
+.party-btn {
+    display: inline-block;
+    padding: 14px 38px;
+    background: #ffffff;
+    color: #5B2C83;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.party-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+}
+
+/* =====================================
+   IMAGE COLLAGE
+===================================== */
+.party-images {
+    position: relative;
+    height: clamp(300px, 40vw, 420px);
+}
+
+.party-images img {
+    position: absolute;
+    width: clamp(180px, 25vw, 240px);
+    height: clamp(240px, 32vw, 320px);
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    transition: transform 0.4s ease;
+}
+
+/* Image positions */
+.party-images img:nth-child(1) {
+    top: 0;
+    left: 0;
+}
+
+.party-images img:nth-child(2) {
+    top: 80px;
+    right: 0;
+}
+
+.party-images img:nth-child(3) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.party-images img:hover {
+    transform: scale(1.05);
+}
+
+/* =====================================
+   TABLET (<= 900px)
+===================================== */
+@media (max-width: 900px) {
+    .party-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .party-images {
+        height: auto;
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .party-images img {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        transform: none;
+    }
+}
+
+/* =====================================
+   MOBILE (<= 600px)
+===================================== */
+@media (max-width: 600px) {
+    .party-india {
+        padding: 60px 15px;
+    }
+
+    .party-content {
+        padding: 30px 22px;
+    }
+
+    .party-btn {
+        padding: 13px 32px;
+        font-size: 15px;
+    }
+}
+
+/* =====================================
+   SMALL MOBILE (<= 400px)
+===================================== */
+@media (max-width: 400px) {
+    .party-content h2 {
+        font-size: 24px;
+    }
+
+    .party-images img {
+        height: 220px;
+    }
+}
+
+
+
+/* =====================================
+   DIFFERENCE SECTION (NO BACKGROUND)
+===================================== */
+.difference-section {
+    padding: 120px 20px;
+    background: transparent;   /* REMOVED BG */
+    color: #1a1a1a;
+}
+
+/* Title */
+.difference-section h2 {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 700;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    line-height: 1.3;
+    color: #2b1b4b; /* Deep purple */
+}
+
+/* List Container */
+.difference-list {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Item */
+.difference-item {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* Vertical Gradient Line */
+.difference-item::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 50px;
+    width: 2px;
+    height: calc(100% + 50px);
+    background: linear-gradient(
+        to bottom,
+        #7B3FE4,
+        #CDB4DB
+    );
+}
+
+/* Number */
+.diff-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #7B3FE4;
+    min-width: 45px;
+}
+
+/* Content */
+.diff-content h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #2b1b4b;
+}
+
+.diff-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555555;
+}
+
+/* Remove line for last item */
+.difference-item:last-child::before {
+    display: none;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 768px) {
+    .difference-section h2 {
+        font-size: 28px;
+        margin-bottom: 60px;
+    }
+
+    .difference-item {
+        gap: 20px;
+    }
+
+    .diff-number {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+/* =====================================
+   FOOTER
+===================================== */
+.site-footer {
+    background: linear-gradient(135deg, #5B2C83, #7B3FE4);
+    color: #ffffff;
+    padding: 70px 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Container */
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 50px;
+}
+
+/* Brand */
+.footer-brand h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Links */
+.footer-links h4,
+.footer-contact h4 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Contact */
+.footer-contact p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+/* Social */
+.footer-social {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: #ffffff;
+    color: #5B2C83;
+    transform: translateY(-4px);
+}
+
+/* Bottom */
+.footer-bottom {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.butterfly-heading{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.section-title{
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+/* Butterfly Style */
+.butterfly{
+    position: absolute;
+    font-size: 28px;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* Different flight paths */
+.b1{
+    top: -20px;
+    left: -30px;
+    animation-name: fly1;
+}
+
+.b2{
+    top: -10px;
+    right: -30px;
+    animation-name: fly2;
+}
+
+.b3{
+    bottom: -20px;
+    left: 20%;
+    animation-name: fly3;
+}
+
+.b4{
+    bottom: -10px;
+    right: 20%;
+    animation-name: fly4;
+}
+
+/* Animations */
+@keyframes fly1{
+    0%{transform: translate(0,0) rotate(0deg);}
+    50%{transform: translate(80px,-40px) rotate(20deg);}
+    100%{transform: translate(0,0) rotate(0deg);}
+}
+
+@keyframes fly2{
+    0%{transform: translate(0,0);}
+    50%{transform: translate(-90px,40px);}
+    100%{transform: translate(0,0);}
+}
+
+@keyframes fly3{
+    0%{transform: translate(0,0);}
+    50%{transform: translate(120px,-50px);}
+    100%{transform: translate(0,0);}
+}
+
+@keyframes fly4{
+    0%{transform: translate(0,0);}
+    50%{transform: translate(-120px,-40px);}
+    100%{transform: translate(0,0);}
+}
+
